@@ -1,7 +1,8 @@
 package com.user.user.services;
 
-import com.user.user.model.User;
-import com.user.user.util.UserUtility;
+import com.user.user.Entity.UsersDetailEntity;
+import com.user.user.Repository.UsersDetailRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,27 +10,21 @@ import java.util.List;
 @Service
 public class UserService {
 
-    List<User> users;
-    public List<User> getUsers() {
-        return UserUtility.getUsers();
+    @Autowired
+    UsersDetailRepository userDetailsRspository;
+
+    public List<UsersDetailEntity> getUsers() {
+        return userDetailsRspository.findAll();
     }
 
-    public void upsertUser(User user) {
-        users = getUsers();
-        User userfetched = UserUtility.getUserById(user.getId());
-        if(userfetched == null) {
-            users.add(user);
-        } else {
-            users.remove(userfetched);
-            users.add(user);
-        }
+    public void saveUser(UsersDetailEntity user) {
+        userDetailsRspository.save(user);
+    }
+    public void updateUser(UsersDetailEntity user) {
+        userDetailsRspository.save(user);
     }
 
-    public void deleteUser(int id) {
-        User userfetched = UserUtility.getUserById(id);
-        if(users == null || users.isEmpty()) {
-            users = getUsers();
-        }
-        users.remove(userfetched);
+    public void deleteUser(Long id) {
+        userDetailsRspository.deleteById(id);
     }
  }
