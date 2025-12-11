@@ -17,11 +17,11 @@ public class UserService {
         return userDetailsRspository.findAll();
     }
 
-    public void saveUser(UsersDetailEntity user) {
-        userDetailsRspository.save(user);
+    public UsersDetailEntity saveUser(UsersDetailEntity user) {
+        return userDetailsRspository.save(user);
     }
-    public void updateUser(UsersDetailEntity user) {
-        userDetailsRspository.save(user);
+    public UsersDetailEntity updateUser(UsersDetailEntity user) {
+        return userDetailsRspository.save(user);
     }
 
     public void deleteUser(Long id) {

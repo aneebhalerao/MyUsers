@@ -15,19 +15,18 @@ public class UserDataController {
     private UserService userService;
 
     @GetMapping("/get")
-    public String getUserDetails() {
-        List<UsersDetailEntity> users = userService.getUsers();
-        return users.toString();
+    public List<UsersDetailEntity> getUserDetails() {
+        return userService.getUsers();
     }
 
     @PostMapping("/save")
-    public void upsertUser(@RequestBody UsersDetailEntity user) {
-        userService.saveUser(user);
+    public UsersDetailEntity upsertUser(@RequestBody UsersDetailEntity user) {
+        return userService.saveUser(user);
     }
 
     @PutMapping("/update")
-    public void updateUser(@RequestBody UsersDetailEntity user) {
-        userService.updateUser(user);
+    public UsersDetailEntity updateUser(@RequestBody UsersDetailEntity user) {
+       return userService.updateUser(user);
     }
 
     @DeleteMapping("/delete/{id}")

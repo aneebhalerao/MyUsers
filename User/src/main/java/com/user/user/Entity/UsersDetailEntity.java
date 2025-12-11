@@ -18,7 +18,6 @@ public class UsersDetailEntity {
     int age;
     String address;
 
-
     @Override
     public String toString() {
         return "UsersDetailEntity{" +
